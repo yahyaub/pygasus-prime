@@ -2,28 +2,19 @@
 Thank you so much for your contribution!
 
 Before you contribute, you need to hold a single thought:
-Everything should be focused on making prototypes quickly.
+**Everything should be focused on making video game prototypes quickly.**
 
-pygasus-prime concerns itself with simplicity. When one uses pygasus, they should feel like they are building with magic.
-A feature should be abstract enough that it can either be applied to general game making or to help make games of a certain genre.
+pygasus-prime concerns itself with simplicity. Features are abstract enough to either be applied to general game making or to help make games of a certain genre.
 
-## Existing ideas
-The easiest way to contribute is to pick up any issues I have raised that make up my TODO list.
+When one uses pygasus, they should feel like they are building with magic.
 
-Indicate that you desire to work on an issue, and make a pull request. It's that easy!
+## Ideas
+All pull requests for features, fixes or improvements are welcome!
 
-It doesn't matter if someone else has started working on it. All contributions are welcome.
-
-## New ideas
-Simply make a pull request with a clear description (No need to create an issue).
-The title should start with `New Feature: ` followed by a summary of what's coming in eg `New Feature: Add animation for board games`
-
-If you're unsure about an idea, you may like to open up a discussion first under Ideas.
+I will occassionally raise issues that you are free to pick up; all you need to do is include the issue number in your branch name.
 
 ## Bugs
-Any bugs should at least have an issue raised, even if you won't be the one to fix them.
-
-By bringing up an issue to be looked at is a great way to contribute to this project's development and growth, so thank you in advance!
+Please raise an issue for any bugs you find, even if you won't be the one to fix them.
 
 ## Comments
 I prefer to keep comments to a minimum.
