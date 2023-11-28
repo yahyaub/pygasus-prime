@@ -48,8 +48,10 @@ class Layer(BaseDisplay):
 
   def update(self):
     for key, item in self.items.items():
+      item.dt = self.dt
       item.update()
     for text_item in self.text_items:
+      text_item.dt = self.dt
       text_item.update()
   def update_event(self, event):
     for key, item in self.items.items():
