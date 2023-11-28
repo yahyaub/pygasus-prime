@@ -34,6 +34,9 @@ class BaseDisplay(ABC):
     self.surface.fill(self.bg_colour)
     self.surface.blit(self.bg_image, (0,0))
 
+  def set_dt(self, dt):
+    self.dt = dt
+
   @abstractmethod
   def setup(self):
     pass

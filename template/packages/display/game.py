@@ -30,6 +30,7 @@ class GameDisplay(BaseDisplay):
 
   def update(self):
     for layer in self.layers:
+      layer.set_dt(self.dt)
       layer.update()
 
   def update_event(self, event):

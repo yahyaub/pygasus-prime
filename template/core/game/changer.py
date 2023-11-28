@@ -8,6 +8,7 @@ class GameChanger:
   def run(self, dt):
     active_display = vars.displays[vars.display_keys[vars.active_display]]
 
+    active_display.set_dt(dt)
     active_display.update()
 
     for event in pygame.event.get():
