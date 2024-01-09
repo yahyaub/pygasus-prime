@@ -21,8 +21,17 @@ class GameDisplay(BaseDisplay):
     self.layers = []
 
   def add_layer(self, layer):
-    if len(self.layers) < 10:
+    number_of_layers = len(self.layers)
+
+    if number_of_layers < 1:
+      layer.set_canvas_to(self)
       self.layers.append(layer)
+      return
+
+    if number_of_layers < 10:
+      layer.set_canvas_to(self.layers[-1])
+      self.layers.append(layer)
+      return
 
   def setup(self):
     for layer in self.layers:
