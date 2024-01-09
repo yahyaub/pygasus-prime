@@ -32,6 +32,12 @@ class Layer(BaseDisplay):
     self._set_as_layer_for(item)
     self.items[key] = item
 
+  def remove_item(self, item):
+    del self.items[item.name]
+
+  def remove_item_by_name(self, key):
+    del self.items[key]
+
   def add_text_item(self, text_item):
     self._set_as_layer_for(text_item)
     self.text_items.append(text_item)
