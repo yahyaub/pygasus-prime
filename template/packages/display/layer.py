@@ -57,6 +57,9 @@ class Layer(BaseDisplay):
     for key, item in self.items.items():
       item.update_event(event)
 
+  def clear_inactive_items(self):
+    self.items = dict(list(filter((lambda itm: itm[1].is_active), self.items.items())))
+
   def _register_canvas(self, item):
     item.canvas = self.surface
 
