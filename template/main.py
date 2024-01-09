@@ -15,6 +15,6 @@ if __name__ == '__main__':
   game_painter = GamePainter()
 
   while vars.game_on:
-    dt = pygame.time.Clock().tick(60.0)
+    dt = pygame.time.Clock().tick(90.0)
     game_changer.run(dt)
     game_painter.run()

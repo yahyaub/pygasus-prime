@@ -39,6 +39,8 @@ class GameDisplay(BaseDisplay):
 
   def draw(self):
     for layer in self.layers:
+      layer.clear()
+      layer.clear_inactive_items()
       layer.draw()
       self.surface.blit(layer.surface, (0,0))
     self.canvas.surface.blit(self.surface, (0,0))
