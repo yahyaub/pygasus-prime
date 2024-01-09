@@ -12,7 +12,7 @@ from packages.value.constants import GRID_DIM
 from packages.value.constants import LAYER_DISPLAY_KEY
 
 class Layer(BaseDisplay):
-  def __init__(self, canvas, name=False, bg_colour=False, bg_image=False):
+  def __init__(self, name=False, bg_colour=False, bg_image=False):
     if not name:
       name = LAYER_DISPLAY_KEY
     if not bg_colour:
@@ -22,7 +22,6 @@ class Layer(BaseDisplay):
 
     super().__init__(name, bg_colour, bg_image)
 
-    self.canvas = canvas
     self.surface = pygame.Surface((self.width, self.height), flags=SRCALPHA)
     self.items = {}
     self.text_items = []
@@ -30,11 +29,11 @@ class Layer(BaseDisplay):
   def add_item(self, item, key=False):
     if not key:
       key = item.name
-    self._register_canvas(item)
+    self._set_as_layer_for(item)
     self.items[key] = item
 
   def add_text_item(self, text_item):
-    self._register_canvas(text_item)
+    self._set_as_layer_for(text_item)
     self.text_items.append(text_item)
 
   def draw(self):
@@ -60,7 +59,10 @@ class Layer(BaseDisplay):
   def clear_inactive_items(self):
     self.items = dict(list(filter((lambda itm: itm[1].is_active), self.items.items())))
 
-  def _register_canvas(self, item):
+  def set_canvas_to(self, canvas):
+    self.canvas = canvas
+
+  def _set_as_layer_for(self, item):
     item.canvas = self.surface
 
 class LayerItem(GameObject):
