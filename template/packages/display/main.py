@@ -19,6 +19,9 @@ class MainDisplay(BaseDisplay):
   def update(self):
     pass
 
+  def update_self(self):
+    pass
+
   def update_event(self, event):
     pass
 

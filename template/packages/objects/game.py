@@ -15,10 +15,8 @@ class GameObject(ABC):
     self.image = Image.resize(image, new_dimensions)
     self.position = position
     self.is_active = True
+    self.collisions = {}
     self.box = CollisionBox(self)
-
-  def resize_collision_box(self, scale):
-    self.box = CollisionBox(self, scale)
 
   def change_name(self, name):
     self.name = name
@@ -37,4 +35,8 @@ class GameObject(ABC):
 
   @abstractmethod
   def draw(self):
+    pass
+
+  @abstractmethod
+  def has_collided(self):
     pass

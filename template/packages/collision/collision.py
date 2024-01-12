@@ -2,8 +2,10 @@ import pygame
 from pygame.locals import *
 
 class CollisionBox:
-  def __init__(self, game_object, scale=False):
-    self.adjust(game_object, scale)
+  def __init__(self, game_object, dim=False):
+    if not dim:
+      self.dim = (0, 0)
+    self.adjust(game_object)
 
   def is_clicked(self, offset=False):
     if not offset:
@@ -19,7 +21,9 @@ class CollisionBox:
 
   def adjust(self, game_object, scale=False):
     if not scale:
-      scale = (0, 0)
+      scale = self.dim
+    else:
+      self.dim = scale
 
     w = int(game_object.image.get_width() * scale[0])
     h = int(game_object.image.get_height() * scale[1])
@@ -37,5 +41,6 @@ class CollisionBox:
 
     self.box = box
 
-
+  def set_dim(self, dim_x, dim_y):
+    self.dim = (dim_x, dim_y)
 

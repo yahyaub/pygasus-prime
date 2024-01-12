@@ -7,7 +7,7 @@ from packages.display.base import BaseDisplay
 from packages.image.image import Image
 from packages.objects.game import GameObject
 from packages.objects.text import TextObject
-from packages.value.constants import ORANGE
+from packages.value.constants import BLUE
 from packages.value.constants import GRID_DIM
 from packages.value.constants import LAYER_DISPLAY_KEY
 
@@ -44,7 +44,8 @@ class Layer(BaseDisplay):
 
   def draw(self):
     for key, item in self.items.items():
-      # pygame.draw.rect(self.surface, ORANGE, item.box.box)
+      item.box.adjust(item)
+      pygame.draw.rect(self.surface, BLUE, item.box.box)
       item.draw()
     for text_item in self.text_items:
       # pygame.draw.rect(self.surface, ORANGE, text_item.box.box)
@@ -67,6 +68,9 @@ class Layer(BaseDisplay):
 
   def set_canvas_to(self, canvas):
     self.canvas = canvas
+
+  def update_self(self):
+    pass
 
   def _set_as_layer_for(self, item):
     item.canvas = self.surface
@@ -96,6 +100,9 @@ class LayerItem(GameObject):
 
   def change_image(self, image_key):
     self.image = Image.resize(Image.get(image_key), (self.image.get_width(), self.image.get_height()))
+
+  def has_collided(self):
+    return len(self.collisions)> 0
 
 class TextItem(TextObject):
   def __init__(self, text, position=False):
