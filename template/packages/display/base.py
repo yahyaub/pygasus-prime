@@ -46,6 +46,10 @@ class BaseDisplay(ABC):
     pass
 
   @abstractmethod
+  def update_self(self):
+    pass
+
+  @abstractmethod
   def update_event(self):
     pass
 

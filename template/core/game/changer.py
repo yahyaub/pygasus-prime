@@ -19,6 +19,8 @@ class GameChanger:
           self.quit_game()
 
       active_display.update_event(event)
+    active_display.update_self()
+    active_display.check_collisions()
 
   def quit_game(self):
     pygame.quit()

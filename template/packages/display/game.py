@@ -42,6 +42,10 @@ class GameDisplay(BaseDisplay):
       layer.set_dt(self.dt)
       layer.update()
 
+  def update_self(self):
+    for layer in self.layers:
+      layer.update_self()
+
   def update_event(self, event):
     for layer in self.layers:
       layer.update_event(event)
@@ -53,3 +57,17 @@ class GameDisplay(BaseDisplay):
       layer.draw()
       self.surface.blit(layer.surface, (0,0))
     self.canvas.surface.blit(self.surface, (0,0))
+
+  def check_collisions(self):
+    for layer_curr in self.layers:
+      for k, item1 in layer_curr.items.items():
+        for layer_othr in self.layers:
+          for k, item2 in layer_othr.items.items():
+            if item1 is item2:
+              continue
+            if item1.box.has_collided(item2.box):
+              item1.collisions[item2.name] = item2
+              item2.collisions[item1.name] = item1
+            else:
+              item1.collisions.pop(item2.name, None)
+              item2.collisions.pop(item1.name, None)
