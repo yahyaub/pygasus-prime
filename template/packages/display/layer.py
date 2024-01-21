@@ -45,7 +45,7 @@ class Layer(BaseDisplay):
   def draw(self):
     for key, item in self.items.items():
       item.box.adjust(item)
-      pygame.draw.rect(self.surface, BLUE, item.box.box)
+      # pygame.draw.rect(self.surface, BLUE, item.box.box)
       item.draw()
     for text_item in self.text_items:
       # pygame.draw.rect(self.surface, ORANGE, text_item.box.box)
@@ -74,6 +74,7 @@ class Layer(BaseDisplay):
 
   def _set_as_layer_for(self, item):
     item.canvas = self.surface
+    item.layer = self
 
 class LayerItem(GameObject):
   def __init__(self, image_key, position=False, new_dimensions=False):
@@ -83,6 +84,12 @@ class LayerItem(GameObject):
       new_dimensions = (GRID_DIM, GRID_DIM)
 
     super().__init__(image_key, position, new_dimensions)
+
+  def update(self):
+    pass
+
+  def update_event(self, event):
+    pass
 
   def draw(self):
     self.clear()
@@ -110,6 +117,12 @@ class TextItem(TextObject):
       position = (0,0)
 
     super().__init__(text, position)
+
+  def update(self):
+    pass
+
+  def update_event(self, event):
+    pass
 
   def draw(self):
     self.clear()
