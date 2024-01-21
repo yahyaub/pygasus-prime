@@ -69,17 +69,12 @@ class Layer(BaseDisplay):
   def set_canvas_to(self, canvas):
     self.canvas = canvas
 
-  def update(self):
-    pass
-
-  def update_event(self):
-    pass
-
   def update_self(self):
     pass
 
   def _set_as_layer_for(self, item):
     item.canvas = self.surface
+    item.layer = self
 
 class LayerItem(GameObject):
   def __init__(self, image_key, position=False, new_dimensions=False):
@@ -89,6 +84,12 @@ class LayerItem(GameObject):
       new_dimensions = (GRID_DIM, GRID_DIM)
 
     super().__init__(image_key, position, new_dimensions)
+
+  def update(self):
+    pass
+
+  def update_event(self, event):
+    pass
 
   def draw(self):
     self.clear()
@@ -116,6 +117,12 @@ class TextItem(TextObject):
       position = (0,0)
 
     super().__init__(text, position)
+
+  def update(self):
+    pass
+
+  def update_event(self, event):
+    pass
 
   def draw(self):
     self.clear()
