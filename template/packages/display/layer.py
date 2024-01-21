@@ -45,7 +45,7 @@ class Layer(BaseDisplay):
   def draw(self):
     for key, item in self.items.items():
       item.box.adjust(item)
-      pygame.draw.rect(self.surface, BLUE, item.box.box)
+      # pygame.draw.rect(self.surface, BLUE, item.box.box)
       item.draw()
     for text_item in self.text_items:
       # pygame.draw.rect(self.surface, ORANGE, text_item.box.box)
@@ -68,6 +68,12 @@ class Layer(BaseDisplay):
 
   def set_canvas_to(self, canvas):
     self.canvas = canvas
+
+  def update(self):
+    pass
+
+  def update_event(self):
+    pass
 
   def update_self(self):
     pass
