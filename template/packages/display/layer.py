@@ -128,10 +128,7 @@ class TextItem(TextObject):
     self.clear()
     position = self.position
     for ch in self.text:
-      # Ideally, this will return the NEXT position for a character
-      # eg position = ch.draw(self.canvas, position)
-      ch.draw(self.canvas, position)
-      position = (position[0] + ch.spacing, position[1])
+      position = ch.draw(self.canvas, position)
 
   def clear(self):
     self.canvas.fill(0, pygame.Rect(self.position[0], self.position[1], self.image.get_width(), self.image.get_height()))
