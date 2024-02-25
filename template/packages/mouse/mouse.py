@@ -40,6 +40,7 @@ class Mouse:
     if not mouse_button:
       mouse_button = Mouse.LEFT_BTN
     return event.type == MOUSEBUTTONUP and event.button == mouse_button
+  @staticmethod
   def is_scroll(event, mouse_button=False):
     return Mouse.is_down(event, mouse_button)
 
