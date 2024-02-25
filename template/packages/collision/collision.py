@@ -1,6 +1,8 @@
 import pygame
 from pygame.locals import *
 
+from packages.mouse.mouse import Mouse
+
 class CollisionBox:
   def __init__(self, game_object, dim=False):
     if not dim:
@@ -11,8 +13,8 @@ class CollisionBox:
     if not offset:
       offset = (0, 0)
 
-    mouse_x = pygame.mouse.get_pos()[0] - offset[0]
-    mouse_y = pygame.mouse.get_pos()[1] - offset[1]
+    mouse_x = Mouse.get_x_px() - offset[0]
+    mouse_y = Mouse.get_y_px() - offset[1]
     mouse_rect = Rect(mouse_x, mouse_y, 1, 1)
     return mouse_rect.colliderect(self.box)
 

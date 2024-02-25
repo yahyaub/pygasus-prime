@@ -4,6 +4,7 @@ from pygame.locals import *
 from abc import ABC, abstractmethod
 from packages.collision.collision import CollisionBox
 from packages.image.image import Image
+from packages.time.timer import TimerCollection
 from packages.value.random import Random
 
 class GameObject(ABC):
@@ -18,6 +19,7 @@ class GameObject(ABC):
     self.is_visible = True
     self.collisions = {}
     self.box = CollisionBox(self)
+    self.timers = TimerCollection()
 
   def change_name(self, name):
     self.name = name
