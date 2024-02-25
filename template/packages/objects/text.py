@@ -43,3 +43,4 @@ class CharacterObject():
 
   def draw(self, canvas, position):
     canvas.blit(self.character, position)
+    return (position[0] + self.spacing, position[1])
