@@ -77,13 +77,15 @@ class Layer(BaseDisplay):
     item.layer = self
 
 class LayerItem(GameObject):
-  def __init__(self, image_key, position=False, new_dimensions=False):
+  def __init__(self, image_key, image_type=False, position=False, new_dimensions=False):
+    if not image_type:
+      image_type = image_key
     if not position:
       position = (0,0)
     if not new_dimensions:
       new_dimensions = (GRID_DIM, GRID_DIM)
 
-    super().__init__(image_key, position, new_dimensions)
+    super().__init__(image_key, image_type, position, new_dimensions)
 
   def update(self):
     pass
@@ -92,8 +94,9 @@ class LayerItem(GameObject):
     pass
 
   def draw(self):
-    self.clear()
-    self.canvas.blit(self.image, self.position)
+    if self.is_visible:
+      self.clear()
+      self.canvas.blit(self.image, self.position)
 
   def clear(self):
     self.canvas.fill(0, pygame.Rect(self.position[0], self.position[1], self.image.get_width(), self.image.get_height()))
