@@ -35,3 +35,12 @@ class Grid:
   @staticmethod
   def tuple_pixel_to_number(pixel_tuple):
     return tuple(Grid.list_pixel_to_number(list(pixel_tuple)))
+
+  @staticmethod
+  def flatten(grid):
+    flat_list = []
+
+    for row in grid:
+      flat_list.extend(row)
+
+    return flat_list
