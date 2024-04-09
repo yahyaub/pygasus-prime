@@ -27,18 +27,21 @@ class Layer(BaseDisplay):
     self.text_items = []
 
   def add_item(self, item, key=False):
+    if item is None:
+      return
     if not key:
-      key = item.name
+      key = item.id
     self._set_as_layer_for(item)
     self.items[key] = item
 
-  def remove_item(self, item):
-    del self.items[item.name]
-
-  def remove_item_by_name(self, key):
+  def remove_item(self, key=False):
+    if not key:
+      key = item.id
     del self.items[key]
 
   def add_text_item(self, text_item):
+    if text_item is None:
+      return
     self._set_as_layer_for(text_item)
     self.text_items.append(text_item)
 
@@ -77,7 +80,7 @@ class Layer(BaseDisplay):
     item.layer = self
 
 class LayerItem(GameObject):
-  def __init__(self, image_key, image_type=False, position=False, new_dimensions=False):
+  def __init__(self, image_key, position=False, image_type=False, new_dimensions=False):
     if not image_type:
       image_type = image_key
     if not position:

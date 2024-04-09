@@ -36,18 +36,17 @@ class Board(ABC):
       return True
     return False
 
-  def swap_objs(self, pos_a, pos_b):
-    temp = self.board[pos_a[0]][pos_a[1]]
-    self.board[pos_a[0]][pos_a[1]] = self.board[pos_b[0]][pos_b[1]]
-    self.board[pos_b[0]][pos_b[1]] = temp
-
-  def link(board):
+  def link_board(self):
     pass
 
   # When passing 1D lists, remember to wrap them in a [ ]
   # e.g. like this -> [ [1,2,3,4,5,6,7] ]
   @abstractmethod
   def place_defined(self, obj_grid):
+    pass
+
+  @abstractmethod
+  def swap_objs(self, pos_a, pos_b):
     pass
 
   def _is_empty(self, row, col):
@@ -73,3 +72,8 @@ class DataBoard(Board):
         col += 1
       row += 1
       col = 0
+
+  def swap_objs(self, pos_a, pos_b):
+    temp = self.board[pos_a[0]][pos_a[1]]
+    self.board[pos_a[0]][pos_a[1]] = self.board[pos_b[0]][pos_b[1]]
+    self.board[pos_b[0]][pos_b[1]] = temp
