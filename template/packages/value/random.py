@@ -11,7 +11,7 @@ class Random:
 
   @staticmethod
   def index(stop):
-    return Random.number_between(0, stop)
+    return Random.number_between(0, stop-1)
 
   @staticmethod
   def number_between(start, stop):
@@ -20,11 +20,21 @@ class Random:
 
   @staticmethod
   def list_item(list):
-    random.seed()
-    index = random.randint(0, len(list)-1)
+    index = Random.index(len(list))
     return list[index]
 
   @staticmethod
   def alphanumeric(length):
     alphanumeric_chars = string.ascii_letters + string.digits
     return ''.join(random.choice(alphanumeric_chars) for _ in range(length))
+
+  @staticmethod
+  def grid_index(x_stop, y_stop):
+    x = Random.index(x_stop)
+    y = Random.index(y_stop)
+    return (x, y)
+
+  @staticmethod
+  def grid_item(grid):
+    line = Random.list_item(grid)
+    return Random.list_item(line)
