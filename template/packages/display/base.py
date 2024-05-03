@@ -11,8 +11,10 @@ from packages.value.constants import LAYER_DISPLAY_KEY
 
 class Display():
   @staticmethod
-  def switch(key):
+  def switch(key, reset=True):
     if not key == MAIN_DISPLAY_KEY:
+      if reset:
+        vars.displays[key].reset()
       vars.active_display = vars.display_keys.index(key)
 
 class BaseDisplay(ABC):
