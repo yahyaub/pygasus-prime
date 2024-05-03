@@ -4,9 +4,10 @@ from pygame.locals import *
 # Global variables
 import core.value.variables as core_vars
 
+from packages.display.layer import *
+from packages.display.base import Display
 from packages.display.game import GameDisplay
 from packages.display.grid import Grid
-from packages.display.layer import Layer, LayerItem, TextItem
 from packages.value.constants import BLACK
 from packages.value.random import Random
 
@@ -19,7 +20,7 @@ class BlankDisplay(GameDisplay):
   def __init__(self, name):
     super().__init__(name, BLACK)
 
-    self.add_layer(BlankLayer)
+    self.add_layer(BlankLayer())
 
 # LAYERS
 class BlankLayer(Layer):

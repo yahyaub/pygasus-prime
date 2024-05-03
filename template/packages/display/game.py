@@ -33,6 +33,12 @@ class GameDisplay(BaseDisplay):
       self.layers.append(layer)
       return
 
+  def reset(self):
+    for layer in self.layers:
+      layer.items = {}
+      layer.text_items = []
+      layer.setup()
+
   def setup(self):
     for layer in self.layers:
       layer.setup()
