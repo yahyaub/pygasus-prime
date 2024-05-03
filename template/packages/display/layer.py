@@ -4,6 +4,7 @@ from pygame.locals import *
 import packages.value.variables as vars
 
 from packages.display.base import BaseDisplay
+from packages.display.grid import Grid
 from packages.image.image import Image
 from packages.objects.game import GameObject
 from packages.objects.text import TextObject
@@ -88,7 +89,11 @@ class LayerItem(GameObject):
     if not new_dimensions:
       new_dimensions = (GRID_DIM, GRID_DIM)
 
-    super().__init__(image_key, image_type, position, new_dimensions)
+    x_px = Grid.number_to_pixel(position[0])
+    y_px = Grid.number_to_pixel(position[1])
+    px_position = (x_px, y_px)
+
+    super().__init__(image_key, image_type, px_position, new_dimensions)
 
   def update(self):
     pass
@@ -116,6 +121,18 @@ class LayerItem(GameObject):
 
   def has_collided(self):
     return len(self.collisions)> 0
+
+class FreeLayerItem(LayerItem):
+  def __init__(self, image_key, position=False, image_type=False, new_dimensions=False):
+    if not image_type:
+      image_type = image_key
+    if not position:
+      position = (0,0)
+    if not new_dimensions:
+      new_dimensions = (GRID_DIM, GRID_DIM)
+
+    super().__init__(image_key, position, image_type, new_dimensions)
+    self.position = position
 
 class TextItem(TextObject):
   def __init__(self, text, position=False):
