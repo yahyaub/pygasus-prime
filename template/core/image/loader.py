@@ -16,7 +16,6 @@ class SpritesheetLoader():
   def run(self):
     spritesheets = {
       # key: [image_filename, image_keys]
-
       "sample": ["sample.png", [["square", "circle"],["triangle", "heart"]]]
     }
 
