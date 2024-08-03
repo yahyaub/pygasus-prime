@@ -7,6 +7,8 @@ class CollisionBox:
   def __init__(self, game_object, dim=False):
     if not dim:
       self.dim = (0, 0)
+    else:
+      self.dim = dim
     self.adjust(game_object)
 
   def is_clicked(self, offset=False):

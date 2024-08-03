@@ -8,7 +8,7 @@ from packages.display.grid import Grid
 from packages.image.image import Image
 from packages.objects.game import GameObject
 from packages.objects.text import TextObject
-from packages.value.constants import BLUE
+from packages.value.constants import BLUE, ORANGE
 from packages.value.constants import GRID_DIM
 from packages.value.constants import LAYER_DISPLAY_KEY
 
@@ -35,7 +35,7 @@ class Layer(BaseDisplay):
     self._set_as_layer_for(item)
     self.items[key] = item
 
-  def remove_item(self, key=False):
+  def remove_item(self, item, key=False):
     if not key:
       key = item.id
     del self.items[key]
@@ -135,11 +135,17 @@ class FreeLayerItem(LayerItem):
     self.position = position
 
 class TextItem(TextObject):
-  def __init__(self, text, position=False):
+  def __init__(self, text, position=False, limit=False):
     if not position:
       position = (0,0)
+    if not limit:
+      self.limit = len(text)
+    else:
+      self.limit = limit
 
-    super().__init__(text, position)
+    x_px = Grid.number_to_pixel(position[0])
+    y_px = Grid.number_to_pixel(position[1])
+    super().__init__(text, (x_px, y_px), self.limit)
 
   def update(self):
     pass
@@ -150,8 +156,13 @@ class TextItem(TextObject):
   def draw(self):
     self.clear()
     position = self.position
-    for ch in self.text:
-      position = ch.draw(self.canvas, position)
+    x = position[0]
+    for line in self.text:
+      y = 0
+      for ch in line:
+        position = ch.draw(self.canvas, position)
+        y = max(y, position[1]+ch.vertical_spacing_scaled)
+      position = (x, y)
 
   def clear(self):
     self.canvas.fill(0, pygame.Rect(self.position[0], self.position[1], self.image.get_width(), self.image.get_height()))

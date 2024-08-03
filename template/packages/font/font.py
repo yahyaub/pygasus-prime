@@ -18,9 +18,7 @@ class Font:
 
   @staticmethod
   def get_width(key):
-    # Not too sure why this magic number works...
-    # Could be cos of the 1px gap in the fontsheet
-    return vars.text_characters[key].character.get_width() + 1
+    return vars.text_characters[key].character.get_width()
 
   @staticmethod
   def get_height(key):

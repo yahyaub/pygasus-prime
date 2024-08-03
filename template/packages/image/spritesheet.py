@@ -53,8 +53,12 @@ class ImageSpritesheet(Spritesheet):
     Image.add(key, image)
 
 class Fontsheet(Spritesheet):
-  def __init__(self, spacing):
+  def __init__(self, dim, spacing):
+    horizontal_spacing = (dim[0]*SCALE) + spacing[0]
+    vertical_spacing = (dim[1]*SCALE) + spacing[1]
+
     self.spacing = spacing
+    self.spacing_scaled = (horizontal_spacing, vertical_spacing)
 
   def add_image(self, key, image):
-    Font.add_character(key, CharacterObject(image, self.spacing))
+    Font.add_character(key, CharacterObject(image, self.spacing, self.spacing_scaled))
