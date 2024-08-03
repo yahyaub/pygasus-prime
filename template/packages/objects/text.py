@@ -15,11 +15,21 @@ class TextObject(ABC):
     self.set_text(text)
 
   def set_text(self, text):
+    new_line_markers = " .,;:-_=!?/\\"
+
     # How many lines of text?
     lines = []
     start = 0
-    end = self.limit
+    end = self.limit + 1
     while start < len(text):
+
+      # Smart line endings
+      while (not text[start:end][-1] in new_line_markers) and (end > start+1):
+        end -= 1
+      if len(text[start:end]) == 1:
+        while (not text[start:end][-1] in new_line_markers) and (end < len(text)):
+          end += 1
+
       lines.append(text[start:end])
       start = end
       end += self.limit
