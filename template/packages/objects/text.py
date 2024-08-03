@@ -56,7 +56,7 @@ class TextObject(ABC):
     self.image = pygame.Surface((text_width, text_height))
     self.box = CollisionBox(self, (0, 0))
 
-  def resize(self, dimensions, spacing):
+  def resize(self, dimensions, spacing=(1,1)):
     for line in self.text:
       for chobj in line:
         dim_x = dimensions[0] * SCALE
