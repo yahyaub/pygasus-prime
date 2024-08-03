@@ -5,7 +5,10 @@ import packages.value.variables as vars
 
 from abc import ABC, abstractmethod
 from packages.collision.collision import CollisionBox
+from packages.display.grid import Grid
 from packages.font.font import Font
+from packages.image.image import Image
+from packages.value.constants import SCALE
 
 class TextObject(ABC):
   def __init__(self, text, position, limit):
@@ -53,6 +56,14 @@ class TextObject(ABC):
     self.image = pygame.Surface((text_width, text_height))
     self.box = CollisionBox(self, (0, 0))
 
+  def resize(self, dimensions, spacing):
+    for line in self.text:
+      for chobj in line:
+        dim_x = dimensions[0] * SCALE
+        dim_y = dimensions[1] * SCALE
+        chobj.character = Image.resize(chobj.character, (dim_x, dim_y))
+        chobj.set_spacing(spacing, (dim_x, dim_y))
+
   @abstractmethod
   def update(self):
     pass
@@ -77,3 +88,10 @@ class CharacterObject():
   def draw(self, canvas, position):
     canvas.blit(self.character, position)
     return (position[0] + self.horizontal_spacing_scaled, position[1])
+
+  def set_spacing(self, spacing, dimensions):
+    self.horizontal_spacing = spacing[0]
+    self.horizontal_spacing_scaled = dimensions[0] + spacing[0]
+
+    self.vertical_spacing = spacing[1]
+    self.vertical_spacing_scaled = dimensions[1] + spacing[1]
