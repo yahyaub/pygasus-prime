@@ -1,0 +1,5 @@
+[run]
+omit =
+    template-tests/*
+    template/core/*
+    template/main.py

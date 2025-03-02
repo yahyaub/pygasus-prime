@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 pygame = "*"
 jinja2 = "*"
+pytest = "*"
+coverage = "*"
 
 [dev-packages]
 
