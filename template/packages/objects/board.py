@@ -27,7 +27,7 @@ class Board(ABC):
   # There is a better chance for an obj to be placed.
   # The try limit aims to combat randomness and infinite loops.
 
-  # There is an inefficient - but guaranteed - way of doing this
+  # TODO: There is an inefficient - but guaranteed - way of doing this
   # by keeping track of which spaces are None
   def place_random_beta(self, obj:Any):
     is_placed = self.place_random(obj)
@@ -40,7 +40,7 @@ class Board(ABC):
       return True
     return False
 
-  # The idea here is to sync another Board with this one
+  # TODO: The idea here is to sync another Board with this one
   # This will provide some advanced utility
   def link_board(self):
     raise NotImplementedError("Board.link_board: Not implemented")
