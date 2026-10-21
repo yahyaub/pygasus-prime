@@ -14,7 +14,9 @@ if __name__ == '__main__':
   game_changer = GameChanger()
   game_painter = GamePainter()
 
+  clock = pygame.time.Clock()
   while vars.game_on:
-    dt = pygame.time.Clock().tick(90.0)
+    dt = clock.tick(90.0)
     game_changer.run(dt)
     game_painter.run()
+  game_changer.quit_game()
