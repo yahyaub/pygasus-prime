@@ -4,10 +4,10 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pygame = "*"
 jinja2 = "*"
 pytest = "*"
 coverage = "*"
+pygame-ce = "*"
 
 [dev-packages]
 

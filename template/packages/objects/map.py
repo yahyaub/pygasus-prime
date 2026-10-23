@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 
 from abc import abstractmethod
+from typing import Any, Optional
 from packages.objects.board import Board
 from packages.display.grid import Grid
 from packages.display.layer import LayerItem, TextItem
@@ -96,7 +97,7 @@ class MapItem(LayerItem):
       print(vars(self))
 
 class MapLegend:
-  def __init__(self, legend_list):
+  def __init__(self, legend_list:list[list[str]]):
     self.legend = {}
 
     for legend in legend_list:
@@ -108,7 +109,7 @@ class MapLegend:
       else:
         self.update(key, image_key)
 
-  def update(self, key, image_key, image_type=False):
+  def update(self, key, image_key:str, image_type:Optional[str]=None):
     self.legend[key] = {
       "image_key": image_key,
       "image_type": image_type

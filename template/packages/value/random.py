@@ -3,38 +3,39 @@ from pygame.locals import *
 
 import random
 import string
+from typing import Any
 
 class Random:
   @staticmethod
-  def number(stop):
+  def number(stop:int):
     return Random.number_between(1, stop)
 
   @staticmethod
-  def index(stop):
+  def index(stop:int):
     return Random.number_between(0, stop-1)
 
   @staticmethod
-  def number_between(start, stop):
+  def number_between(start:int, stop:int):
     random.seed()
     return random.randint(start, stop)
 
   @staticmethod
-  def list_item(list):
+  def list_item(list:list[Any]):
     index = Random.index(len(list))
     return list[index]
 
   @staticmethod
-  def alphanumeric(length):
+  def alphanumeric(length:int):
     alphanumeric_chars = string.ascii_letters + string.digits
     return ''.join(random.choice(alphanumeric_chars) for _ in range(length))
 
   @staticmethod
-  def grid_index(x_stop, y_stop):
+  def grid_index(x_stop:int, y_stop:int):
     x = Random.index(x_stop)
     y = Random.index(y_stop)
     return (x, y)
 
   @staticmethod
-  def grid_item(grid):
+  def grid_item(grid:list[list[Any]]):
     line = Random.list_item(grid)
     return Random.list_item(line)
